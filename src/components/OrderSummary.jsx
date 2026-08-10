@@ -1,4 +1,5 @@
-const money = (value) => `₹${value.toLocaleString("en-IN")}`;
+const money = (value, currency = "USD") =>
+  new Intl.NumberFormat("en-US", { style: "currency", currency }).format(value);
 
 export default function OrderSummary({
   lines,
@@ -22,11 +23,11 @@ export default function OrderSummary({
                   <strong>{product.name}</strong>
                   <small>Product ID: {product.id}</small>
                   <small>Quantity: {quantity}</small>
-                  <small>Original Price: {money(product.originalPrice)}</small>
-                  <small>Product Discount: -{money(productDiscount)} / unit</small>
-                  <small>Sale Price: {money(product.salePrice)} / unit</small>
+                  <small>Original Price: {money(product.originalPrice, product.currency)}</small>
+                  <small>Product Discount: -{money(productDiscount, product.currency)} / unit</small>
+                  <small>Sale Price: {money(product.salePrice, product.currency)} / unit</small>
                 </div>
-                <strong>{money(product.salePrice * quantity)}</strong>
+                <strong>{money(product.salePrice * quantity, product.currency)}</strong>
               </div>
             );
           })}
@@ -34,13 +35,16 @@ export default function OrderSummary({
       )}
 
       <div className="totals">
-        <div><span>Product Total</span><strong>{money(productTotal)}</strong></div>
+        <div><span>Product Total</span><strong>{money(productTotal, lines[0]?.product.currency)}</strong></div>
         <div><span>Coupon Code</span><strong>{couponCode || "—"}</strong></div>
         <div className="coupon-total">
           <span>Coupon Discount</span>
-          <strong>-{money(couponDiscount)}</strong>
+          <strong>-{money(couponDiscount, lines[0]?.product.currency)}</strong>
         </div>
-        <div className="final-total"><span>Final Total</span><strong>{money(finalTotal)}</strong></div>
+        <div className="final-total">
+          <span>Final Total</span>
+          <strong>{money(finalTotal, lines[0]?.product.currency)}</strong>
+        </div>
       </div>
     </section>
   );

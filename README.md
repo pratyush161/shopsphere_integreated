@@ -62,3 +62,13 @@ AuthProvider
 Cart state is persisted to `localStorage`; authentication is persisted to `sessionStorage`.
 
 \n## Production-style catalog\n\nThe catalog is stored separately in `src/data/products.js` and contains 1,500 unique products: 500 each for Men, Women, and Kids. Each product has a unique SKU, brand/collection, product name, description, material, color, sizes, original/sale price, discount, rating, review count, stock, shipping and return metadata, tags, and product photography. Category pages paginate 24 products at a time.\n
+
+## DummyJSON API integration
+
+The product catalog is now loaded from `https://dummyjson.com/products` at runtime.
+`src/api/products.js` normalizes the API response into the product shape used by
+ShopSphere, while `ProductContext` owns loading, error, and refresh state.
+
+The existing Men/Women navigation is mapped from DummyJSON `mens-*` and `womens-*`
+categories. `All Products` exposes the complete API catalog. API prices are displayed
+in USD because DummyJSON provides price values without an INR conversion.

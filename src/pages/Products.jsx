@@ -5,9 +5,9 @@ export default function Products() {
     <section>
       <div className="hero">
         <div>
-          <span className="eyebrow">CURATED COLLECTIONS</span>
+          <span className="eyebrow">DUMMYJSON API CATALOG</span>
           <h1>Find your everyday style.</h1>
-          <p>Explore sale-priced fashion across Men, Women, and Kids.</p>
+          <p>Live product data is loaded from DummyJSON and normalized for ShopSphere.</p>
         </div>
       </div>
       <Outlet />

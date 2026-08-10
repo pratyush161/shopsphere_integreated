@@ -14,15 +14,15 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <Link className="brand" to={isAuthenticated ? "/products/men" : "/login"}>
+      <Link className="brand" to={isAuthenticated ? "/products/all" : "/login"}>
         ShopSphere
       </Link>
 
       {isAuthenticated && (
         <nav className="nav-links">
+          <NavLink to="/products/all">All Products</NavLink>
           <NavLink to="/products/men">Men</NavLink>
           <NavLink to="/products/women">Women</NavLink>
-          <NavLink to="/products/kids">Kids</NavLink>
           <NavLink to="/cart">Cart ({cartCount})</NavLink>
         </nav>
       )}

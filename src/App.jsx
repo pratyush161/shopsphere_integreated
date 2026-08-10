@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
 
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Navigate to="/products/men" replace />} />
+            <Route path="/" element={<Navigate to="/products/all" replace />} />
             <Route path="/products" element={<Products />}>
               <Route index element={<Navigate to="men" replace />} />
               <Route path=":category" element={<Category />} />

@@ -40,7 +40,7 @@ export default function Checkout() {
       <div className="checkout-note">
         <strong>Ready to place your order?</strong>
         <p>This demo stops at the review stage. Connect your payment/order API here.</p>
-        <Link className="primary-button" to="/products/men">Continue Shopping</Link>
+        <Link className="primary-button" to="/products/all">Continue Shopping</Link>
       </div>
     </section>
   );

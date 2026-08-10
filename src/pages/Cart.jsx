@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 import { useCoupon } from "../context/CouponContext";
 import { useProducts } from "../context/ProductContext";
 
-const money = (value) => `₹${value.toLocaleString("en-IN")}`;
+const money = (value, currency = "USD") => new Intl.NumberFormat("en-US", { style: "currency", currency }).format(value);
 
 export default function Cart() {
   const { items, increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
@@ -27,7 +27,7 @@ export default function Cart() {
         <div className="empty-state">
           <h1>Your cart is empty</h1>
           <p>Add products from a category to begin checkout.</p>
-          <Link className="primary-button" to="/products/men">Continue Shopping</Link>
+          <Link className="primary-button" to="/products/all">Continue Shopping</Link>
         </div>
       </section>
     );
@@ -51,7 +51,7 @@ export default function Cart() {
                 <span className="eyebrow">{product.category}</span>
                 <h3>{product.name}</h3>
                 <p>Product ID: {product.id}</p>
-                <strong>{money(product.salePrice)}</strong>
+                <strong>{money(product.salePrice, product.currency)}</strong>
                 <div className="quantity-controls">
                   <button onClick={() => decreaseQuantity(product.id)} aria-label={`Decrease ${product.name}`}>−</button>
                   <span>{quantity}</span>
